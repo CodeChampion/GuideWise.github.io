@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GuideWise Advertisement</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #1c1e22;
+      color: #e0e0e0;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .hero-banner {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #ffffff;
+    }
+
+    .hero-banner video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      opacity: 0.35;
+    }
+
+    .hero-content {
+      z-index: 1;
+      max-width: 700px;
+      animation: fadeIn 1.5s ease;
+      padding: 0 20px;
+    }
+
+    .hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #a8e6ff;
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      color: #d1ecff;
+      margin-bottom: 2rem;
+    }
+
+    .cta-button {
+      background: linear-gradient(135deg, #00bcd4, #0097a7);
+      color: #fff;
+      border: none;
+      padding: 15px 35px;
+      font-size: 1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgba(0, 188, 212, 0.3);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(0, 188, 212, 0.5);
+    }
+
+    section {
+      padding: 60px 20px;
+      animation: slideUp 1.2s ease;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      color: #ffffff;
+      margin-bottom: 30px;
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .feature-card {
+      background-color: #2b2d31;
+      padding: 20px;
+      border-radius: 12px;
+      width: 280px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-card h3 {
+      color: #a0e7ff;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      color: #ccc;
+      font-size: 0.95rem;
+    }
+
+    .services-dropdown {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .service-item {
+      background-color: #2b2d31;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .service-header {
+      padding: 20px;
+      cursor: pointer;
+      background: linear-gradient(135deg, #0097a7, #00bcd4);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+
+    .service-header:hover {
+      background: linear-gradient(135deg, #00bcd4, #0097a7);
+    }
+
+    .service-header h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    .service-arrow {
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+
+    .service-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      background-color: #34373c;
+    }
+
+    .service-content.active {
+      max-height: 600px;
+    }
+
+    .service-details {
+      padding: 25px;
+      color: #e0e0e0;
+    }
+
+    .price-section {
+      background-color: #2b2d31;
+      padding: 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .price-section h4 {
+      color: #a0e7ff;
+      margin-bottom: 10px;
+    }
+
+    .price-list {
+      list-style: none;
+      color: #ccc;
+    }
+
+    .price-list li {
+      margin-bottom: 5px;
+      padding-left: 15px;
+      position: relative;
+    }
+
+    .price-list li::before {
+      content: "•";
+      color: #00bcd4;
+      position: absolute;
+      left: 0;
+    }
+
+    .requirements {
+      margin-top: 20px;
+    }
+
+    .requirements h4 {
+      color: #a0e7ff;
+      margin-bottom: 10px;
+    }
+
+    .requirements ul {
+      list-style: none;
+      color: #ccc;
+    }
+
+    .requirements li {
+      margin-bottom: 8px;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .requirements li::before {
+      content: "✓";
+      color: #00bcd4;
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    .disclaimer-section {
+      background-color: #2b2d31;
+      padding: 40px 20px;
+      margin-top: 20px;
+      border-top: 2px solid #00bcd4;
+    }
+
+    .disclaimer-title {
+      text-align: center;
+      font-size: 1.8rem;
+      color: #ffffff;
+      margin-bottom: 20px;
+    }
+
+    .disclaimer-content {
+      max-width: 800px;
+      margin: 0 auto;
+      color: #ccc;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .disclaimer-content p {
+      margin-bottom: 15px;
+    }
+
+    .disclaimer-content strong {
+      color: #a0e7ff;
+    }
+
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .popup {
+      background-color: #2b2d31;
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 600px;
+      max-height: 80vh;
+      overflow-y: auto;
+      color: #e0e0e0;
+      position: relative;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .popup-close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: #ccc;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .popup-close:hover {
+      color: #ff6b6b;
+    }
+
+    .popup h2 {
+      color: #a0e7ff;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .tos-content {
+      font-size: 0.9rem;
+      line-height: 1.5;
+      margin-bottom: 25px;
+      color: #ccc;
+    }
+
+    .tos-content h3 {
+      color: #a0e7ff;
+      margin: 15px 0 10px 0;
+    }
+
+    .tos-content p {
+      margin-bottom: 12px;
+    }
+
+    .tos-actions {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+    }
+
+    .tos-button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .accept-button {
+      background: linear-gradient(135deg, #00bcd4, #0097a7);
+      color: white;
+    }
+
+    .accept-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 188, 212, 0.3);
+    }
+
+    .decline-button {
+      background-color: #666;
+      color: white;
+    }
+
+    .decline-button:hover {
+      background-color: #777;
+    }
+
+    footer {
+      background: #121417;
+      padding: 20px;
+      text-align: center;
+      color: #888;
+      font-size: 0.85rem;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Enhanced Mobile Styles */
+    @media (max-width: 768px) {
+      /* Hero Section Mobile Optimization */
+      .hero-banner {
+        height: 70vh;
+        min-height: 500px;
+      }
+      
+      .hero-banner video {
+        /* For Instagram post aspect ratio (9:16) on mobile */
+        width: auto;
+        height: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        object-fit: contain;
+        opacity: 0.4;
+      }
+
+      .hero-content {
+        padding: 0 15px;
+        max-width: 90%;
+      }
+
+      .hero-content h1 {
+        font-size: 2rem;
+        line-height: 1.2;
+        margin-bottom: 0.8rem;
+      }
+
+      .hero-content p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+        line-height: 1.4;
+      }
+
+      .cta-button {
+        padding: 12px 28px;
+        font-size: 0.95rem;
+        width: auto;
+        min-width: 160px;
+      }
+
+      /* Section Spacing */
+      section {
+        padding: 40px 15px;
+      }
+
+      .section-title {
+        font-size: 1.6rem;
+        margin-bottom: 25px;
+        line-height: 1.3;
+      }
+
+      /* Feature Cards Mobile Layout */
+      .features {
+        gap: 15px;
+        margin-bottom: 30px;
+      }
+
+      .feature-card {
+        width: 100%;
+        max-width: 350px;
+        padding: 18px;
+        margin: 0 auto;
+      }
+
+      .feature-card h3 {
+        font-size: 1.1rem;
+        margin-bottom: 8px;
+      }
+
+      .feature-card p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+      }
+
+      /* Service Dropdown Mobile */
+      .services-dropdown {
+        max-width: 100%;
+        margin: 0;
+      }
+
+      .service-item {
+        margin-bottom: 12px;
+      }
+
+      .service-header {
+        padding: 15px;
+        flex-wrap: wrap;
+      }
+
+      .service-header h3 {
+        font-size: 1.1rem;
+        flex: 1;
+        text-align: left;
+      }
+
+      .service-arrow {
+        font-size: 1rem;
+        margin-left: 10px;
+      }
+
+      .service-details {
+        padding: 20px 15px;
+      }
+
+      .price-section {
+        padding: 12px;
+        margin-bottom: 15px;
+      }
+
+      .price-section h4 {
+        font-size: 1rem;
+      }
+
+      .price-list li {
+        font-size: 0.9rem;
+        line-height: 1.4;
+      }
+
+      /* Disclaimer Section Mobile */
+      .disclaimer-section {
+        padding: 30px 15px;
+      }
+
+      .disclaimer-title {
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+      }
+
+      .disclaimer-content {
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+
+      /* Popup Mobile Optimization */
+      .popup {
+        margin: 15px;
+        padding: 20px;
+        max-width: calc(100vw - 30px);
+        max-height: 85vh;
+        border-radius: 12px;
+      }
+
+      .popup h2 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+      }
+
+      .tos-content {
+        font-size: 0.85rem;
+        line-height: 1.4;
+      }
+
+      .tos-content h3 {
+        font-size: 1rem;
+        margin: 12px 0 8px 0;
+      }
+
+      .tos-actions {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .tos-button {
+        padding: 14px 20px;
+        font-size: 0.95rem;
+        width: 100%;
+      }
+
+      /* Footer Mobile */
+      footer {
+        padding: 15px;
+        font-size: 0.8rem;
+      }
+
+      /* Touch-friendly sizing */
+      .service-header,
+      .cta-button,
+      .tos-button {
+        min-height: 44px; /* iOS recommended touch target */
+      }
+
+      /* Improved readability */
+      h4 {
+        font-size: 1rem;
+      }
+
+      .requirements li,
+      .price-list li {
+        padding-left: 18px;
+      }
+
+      /* Better spacing for mobile */
+      .requirements {
+        margin-top: 15px;
+      }
+
+      /* Service content mobile optimization */
+      .service-content.active {
+        max-height: 800px; /* Increase for mobile content */
+      }
+    }
+
+    /* Extra small screens (phones in portrait) */
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        font-size: 1.8rem;
+      }
+
+      .hero-content p {
+        font-size: 0.95rem;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+      }
+
+      .service-header h3 {
+        font-size: 1rem;
+        line-height: 1.3;
+      }
+
+      .popup {
+        margin: 10px;
+        padding: 15px;
+      }
+
+      .popup-close {
+        top: 10px;
+        right: 15px;
+        font-size: 1.3rem;
+      }
+    }
+
+    /* Landscape mobile optimization */
+    @media (max-width: 768px) and (orientation: landscape) {
+      .hero-banner {
+        height: 100vh;
+      }
+
+      .hero-banner video {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        transform: none;
+        left: 0;
+      }
+
+      .hero-content h1 {
+        font-size: 1.8rem;
+      }
+
+      .hero-content p {
+        font-size: 0.95rem;
+        margin-bottom: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero-banner">
+    <video autoplay muted loop playsinline>
+      <source src="hero-banner.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <div class="hero-content">
+      <h1>Study Smarter, Not Harder</h1>
+      <p>GuideWise predicts your exam content using data-driven analytics.</p>
+      <button class="cta-button" onclick="showTermsPopup()">Get Started</button>
+    </div>
+  </div>
+
+  <section>
+    <h2 class="section-title">Why Students Choose GuideWise</h2>
+    <div class="features">
+      <div class="feature-card">
+        <h3>Smart Study Guides</h3>
+        <p>Topic-by-topic breakdown with probability predictions and condensed insights.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Assignment Pre-Grading</h3>
+        <p>Know your grade before submission — detailed peer-style feedback included.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Time Optimization</h3>
+        <p>Focus your effort where it counts most. Maximize grades, minimize waste.</p>
+      </div>
+    </div>
+
+    <div class="services-dropdown">
+      <div class="service-item">
+        <div class="service-header" onclick="toggleService('service1')">
+          <h3>Study Guide Optimization</h3>
+          <span class="service-arrow" id="arrow1">▼</span>
+        </div>
+        <div class="service-content" id="service1">
+          <div class="service-details">
+            <div class="price-section">
+              <h4>Pricing</h4>
+              <ul class="price-list">
+                <li>R175-250 per subject</li>
+                <li>Add-on cheat sheet: R75</li>
+                <li>3 subjects: R500 (save R25-R100)</li>
+                <li>5 subjects: R750 (save R125-R250)</li>
+              </ul>
+            </div>
+            
+            <h4 style="color: #a0e7ff; margin-bottom: 15px;">What We Provide:</h4>
+            <ul style="list-style: none; color: #ccc; margin-bottom: 20px;">
+              <li style="margin-bottom: 8px; padding-left: 20px; position: relative;">
+                <span style="position: absolute; left: 0; color: #00bcd4;">★</span>
+                Subject-specific study guides with test content probability percentages
+              </li>
+              <li style="margin-bottom: 8px; padding-left: 20px; position: relative;">
+                <span style="position: absolute; left: 0; color: #00bcd4;">★</span>
+                Criticality level rankings (High/Medium/Low priority)
+              </li>
+              <li style="margin-bottom: 8px; padding-left: 20px; position: relative;">
+                <span style="position: absolute; left: 0; color: #00bcd4;">★</span>
+                Time allocation recommendations per topic
+              </li>
+              <li style="margin-bottom: 8px; padding-left: 20px; position: relative;">
+                <span style="position: absolute; left: 0; color: #00bcd4;">★</span>
+                Memory aids and mnemonics for key concepts
+              </li>
+              <li style="margin-bottom: 8px; padding-left: 20px; position: relative;">
+                <span style="position: absolute; left: 0; color: #00bcd4;">★</span>
+                Ultra-condensed cheat sheets (premium add-on)
+              </li>
+            </ul>
+
+            <div class="requirements">
+              <h4>Requirements from You:</h4>
+              <ul>
+                <li>Complete table of contents of each chapter (not just chapter names)</li>
+                <li>Your existing notes/summaries (if available)</li>
+                <li>Example tests from previous years (if available)</li>
+              </ul>
+              <p style="margin-top: 15px; color: #a0e7ff; font-weight: bold;">Delivery: 2-4 days via PDF/Word document</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="service-item">
+        <div class="service-header" onclick="toggleService('service2')">
+          <h3>Assignment Pre-Grading</h3>
+          <span class="service-arrow" id="arrow2">▼</span>
+        </div>
+        <div class="service-content" id="service2">
+          <div class="service-details">
+            <div class="price-section">
+              <h4>Pricing</h4>
+              <ul class="price-list">
+                <li>Short assignments (1-5 pages): R125</li>
+                <li>Medium assignments (6-10 pages): R150</li>
+                <li>Long assignments (10+ pages): R175</li>
+                <li>Rush service (24-hour): +50% premium</li>
+              </ul>
+            </div>
+            
+            <h4 style="color: #a0e7ff; margin-bottom: 15px;">What We Provide:</h4>
+            <ul style="list-style: none; color: #ccc; margin-bottom: 20px;">
+              <li style="margin-bottom: 8px; padding-left: 20px; position: relative;">
+                <span style="position: absolute; left: 0; color: #00bcd4;">★</span>
+                Grade estimation (within 3-5% accuracy)
+              </li>
+              <li style="margin-bottom: 8px; padding-left: 20px; position: relative;">
+                <span style="position: absolute; left: 0; color: #00bcd4;">★</span>
+                Critical comparison against assignment requirements
+              </li>
+              <li style="margin-bottom: 8px; padding-left: 20px; position: relative;">
+                <span style="position: absolute; left: 0; color: #00bcd4;">★</span>
+                Detailed mistake identification and analysis
+              </li>
+              <li style="margin-bottom: 8px; padding-left: 20px; position: relative;">
+                <span style="position: absolute; left: 0; color: #00bcd4;">★</span>
+                Constructive feedback for improvement
+              </li>
+              <li style="margin-bottom: 8px; padding-left: 20px; position: relative;">
+                <span style="position: absolute; left: 0; color: #00bcd4;">★</span>
+                Revision recommendations with priority levels
+              </li>
+            </ul>
+
+            <div class="requirements">
+              <h4>Requirements from You:</h4>
+              <ul>
+                <li>Your completed assignment (PDF/Word format)</li>
+                <li>Original assignment brief/rubric</li>
+              </ul>
+              <p style="margin-top: 15px; color: #a0e7ff; font-weight: bold;">Delivery: 1-2 days via detailed report</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="disclaimer-section">
+    <h2 class="disclaimer-title">Important Disclaimer</h2>
+    <div class="disclaimer-content">
+      <p><strong>Payment Terms:</strong> 50% upfront, 50% on delivery. Accepted methods: PayPal, bank transfer.</p>
+      
+      <p><strong>Service Accuracy:</strong> While we strive for high accuracy in our predictions and assessments, GuideWise services are educational aids and should not be considered as guaranteed outcomes. Study guide predictions are based on historical data and pattern analysis.</p>
+      
+      <p><strong>Academic Integrity:</strong> Our assignment pre-grading service is designed to help improve your work before submission. It is your responsibility to ensure all submitted work complies with your institution's academic integrity policies.</p>
+      
+      <p><strong>Refund Policy:</strong> Refunds are considered on a case-by-case basis for services not delivered as specified. Quality disputes will be resolved through revision of deliverables where possible.</p>
+      
+      <p><strong>Limitation of Liability:</strong> GuideWise is not responsible for academic outcomes, grades, or institutional decisions. Our services are supplementary educational tools designed to enhance your learning experience.</p>
+    </div>
+  </div>
+
+  <!-- Terms of Service Popup -->
+  <div class="popup-overlay" id="tosPopup">
+    <div class="popup">
+      <button class="popup-close" onclick="hideTermsPopup()">&times;</button>
+      <h2>Terms of Service</h2>
+      <div class="tos-content">
+        <h3>Service Agreement</h3>
+        <p>By using GuideWise services, you agree to the following terms and conditions:</p>
+        
+        <h3>1. Service Description</h3>
+        <p>GuideWise provides educational assistance through study guide optimization and assignment pre-grading services. Our services are designed to supplement your learning and are not guarantees of academic success.</p>
+        
+        <h3>2. Payment Terms</h3>
+        <p>Payment is required 50% upfront and 50% upon delivery. We accept PayPal and bank transfers. Prices are subject to change without notice.</p>
+        
+        <h3>3. Academic Integrity</h3>
+        <p>You are responsible for ensuring all work complies with your institution's academic integrity policies. GuideWise services are educational aids and should be used to improve your understanding and work quality.</p>
+        
+        <h3>4. Limitation of Liability</h3>
+        <p>GuideWise is not liable for academic outcomes, grades, or institutional decisions. Our accuracy estimations are based on data analysis and are not guaranteed.</p>
+        
+        <h3>5. Refund Policy</h3>
+        <p>Refunds are considered case-by-case for undelivered services. Quality disputes will be addressed through service revision where possible.</p>
+        
+        <h3>6. Privacy</h3>
+        <p>Your academic materials and personal information will be kept confidential and used solely for providing the requested services.</p>
+        
+        <p><strong>By clicking "Accept", you acknowledge that you have read, understood, and agree to these terms.</strong></p>
+      </div>
+      <div class="tos-actions">
+        <button class="tos-button decline-button" onclick="hideTermsPopup()">Decline</button>
+        <button class="tos-button accept-button" onclick="acceptTermsAndProceed()">Accept & Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 GuideWise. All rights reserved.
+  </footer>
+
+  <script>
+    function toggleService(serviceId) {
+      const content = document.getElementById(serviceId);
+      const arrow = document.getElementById('arrow' + serviceId.slice(-1));
+      
+      if (content.classList.contains('active')) {
+        content.classList.remove('active');
+        arrow.style.transform = 'rotate(0deg)';
+      } else {
+        // Close all other services
+        document.querySelectorAll('.service-content').forEach(item => {
+          item.classList.remove('active');
+        });
+        document.querySelectorAll('.service-arrow').forEach(arrow => {
+          arrow.style.transform = 'rotate(0deg)';
+        });
+        
+        // Open clicked service
+        content.classList.add('active');
+        arrow.style.transform = 'rotate(180deg)';
+      }
+    }
+
+    function showTermsPopup() {
+      document.getElementById('tosPopup').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function hideTermsPopup() {
+      document.getElementById('tosPopup').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    function acceptTermsAndProceed() {
+      hideTermsPopup();
+      sendServiceEmail();
+    }
+
+    function sendServiceEmail() {
+      window.location.href = "mailto:tristanjouber@gmail.com?subject=GuideWise Service Inquiry&body=Hi, I'm interested in GuideWise services. Please send me more details.";
+    }
+
+    // Close popup when clicking outside
+    document.getElementById('tosPopup').addEventListener('click', function(e) {
+      if (e.target === this) {
+        hideTermsPopup();
+      }
+    });
+
+    // Prevent body scroll when popup is open
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        hideTermsPopup();
+      }
+    });
+  </script>
+</body>
+</html>
